@@ -1,0 +1,17 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "start:frontend": "cd ./Frontend && npm run dev",
+    "start:backend": "cd ./Backend && npm run dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
