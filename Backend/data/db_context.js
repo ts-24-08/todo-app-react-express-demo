@@ -1,39 +1,56 @@
 import sqlite3 from 'sqlite3';
 
-
 const getDB = () =>
 {
     return new sqlite3.Database('todo.db');
 }
 
-const getTasks = async () =>
+const createTableTask = async () =>
+{
+    const db = getDB();
+
+    db.run(`
+        create table if not exists task
+        (
+            id text primary key,
+            message text,
+            date Date,
+            finished INTEGER
+        );
+        `)
+}
+
+createTableTask();
+
+export const getTasks = async () =>
 {
     const db = getDB();
 
     const result = await new Promise((resolve, reject) => 
     {
-        db.all('select * from tasks', (result, error) => {
-
+        db.all('select * from task', (error, result) => 
+        {
             if(error)
-                reject(result)
+                reject(error)
             else
                 resolve(result)  
         })
-    })
+    }).catch(error => {console.log('ERROR:',error)})
 
     db.close();
     return result;
 }
 
-const createTask = async (task) =>
+export const createTask = async (message) =>
 {
     const db = getDB();
     const id = crypto.randomUUID();
-    
-    const {message, finished} = task;
-
     const date = new Date();
     
+
+    console.log(message);
+    
+
 
     const result = await new Promise((resolve, reject) =>
     {
@@ -50,7 +67,7 @@ const createTask = async (task) =>
     return result;
 }
 
-const updateTask = async (task) =>
+export const updateTask = async (task) =>
 {
     const {id, message, finished} = task;
 
@@ -58,7 +75,7 @@ const updateTask = async (task) =>
 
     const result = await new Promise((resolve, reject) =>
     {
-        db.run(`update task set message = "${message}", finished = ${finished} where id = ${id}`, (result, error) =>
+        db.run(`update task set message = "${message}", finished = ${finished} where id = "${id}"`, (error, result) =>
         {
             if(error)
                 reject(error)
@@ -71,13 +88,13 @@ const updateTask = async (task) =>
     return result;
 }
 
-const deleteTask = async (id) =>
+export const deleteTask = async (id) =>
 {
     const db = getDB();
 
     const result = await new Promise((resolve, reject) =>
     {
-        db.run(`delete task where id = ${id}`, (result, error) =>
+        db.run(`delete from task where id = "${id}"`, (error, result) =>
         {
             if(error)
                 reject(error)
