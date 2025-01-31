@@ -46,11 +46,6 @@ export const createTask = async (message) =>
     const db = getDB();
     const id = crypto.randomUUID();
     const date = new Date();
-    
-
-    console.log(message);
-    
-
 
     const result = await new Promise((resolve, reject) =>
     {

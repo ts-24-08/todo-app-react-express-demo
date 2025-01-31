@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react'
+
 import TaskCard from '../components/task_card';
-
 import { getTasks, createTask } from '../services/task_service'
-
-
-
 
 function App() 
 {
@@ -24,11 +21,9 @@ function App()
 
   const deleteTask = (id) =>
   {
+    // Irgendwie wird nicht das richtige element mit entfernt, immer das letzte, aber kein rerender...
     const newTasks = tasks.filter(x => x.id !== id);
-    console.log(tasks.length);
-    console.log(newTasks.length);
-
-    setTasks([...newTasks]);    
+    setTasks([...newTasks])
   }
 
   const createNewTask = async () =>
