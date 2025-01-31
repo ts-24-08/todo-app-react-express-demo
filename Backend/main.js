@@ -1,8 +1,12 @@
 import express from 'express'
+import cors from 'cors';
+
 import {createTask, updateTask, getTasks, deleteTask} from './data/db_context.js'
 
 const app = express();
+
 app.use(express.json())
+app.use(cors())
 
 app.listen(3000, () => {console.log('Server is running...');
 })
@@ -12,13 +16,14 @@ app.get('/todos', async (request, response) =>
 {
     const result = await getTasks();    
     
+    
     response.status(200).send(result)
 });
 
 // Create a Todo
 app.post('/todos', async (request, response) =>
 {
-    const { message } = request.body;
+    const {message} = request.body;
 
     const result = await createTask(message)
 
@@ -29,6 +34,9 @@ app.post('/todos', async (request, response) =>
 app.put('/todos', async (request, response) =>
 {
     const { task } = request.body;
+
+    console.log(request.body);
+    
     
     const result = await updateTask(task)
 
