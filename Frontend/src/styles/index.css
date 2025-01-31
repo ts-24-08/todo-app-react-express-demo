@@ -1,0 +1,85 @@
+:root {
+    --color1: #F8FAFC;
+    --color2: #D9EAFD;
+    --color3: #BCCCDC;
+    --color4: #9AA6B2;
+    --fontColor: #212427;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+
+body {
+    background-color: var(--color2);
+}
+
+#main {
+    width: 1000px;
+    margin: auto;
+}
+
+.task_card {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    background-color:var(--color1);
+    border: 1px solid var(--color4);
+    margin: 8px;
+    height: 100px;
+    align-items: center;
+}
+
+.left {
+    width: 100%;
+    padding: 8px;
+    height: 100%;
+}
+
+.left h3 {
+    text-align: center;
+}
+
+.center {
+    width: 80%;
+    text-align: center;
+}
+
+.right {
+    display: flex;
+    text-align: end;
+    width: fit-content;
+    padding: 8px;
+}
+
+.button {
+    margin: 4px;
+    font-size: 1.2rem;
+    width: 100px;
+    padding: 8px;
+}
+
+.edit {
+    display: flex;
+    justify-content: space-around;
+}
+
+.checkbox {
+    transform: scale(3);
+    margin: 16px;
+}
+
+.message {
+    padding: 8px;
+    font-size: 1rem;
+    outline: none;
+    width: 650px;
+}

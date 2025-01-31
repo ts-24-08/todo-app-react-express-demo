@@ -9,21 +9,20 @@ export async function getTasks()
 }
 
 //POST
-export async function createTasks(message)
+export async function createTask(message)
 {
-    
     // await fetch(url,message)
     await axios.post(url, {message})
 }
 
 //PUT
-export async function updateTasks(task)
+export async function updateTask(task)
 {
     return axios.put(url, {task});
 }
 
 //DELETE
-export async function deleteTasks(id)
+export async function deleteTask(id)
 {
     await axios.delete(`${url}/${id}`)
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import TaskCard from '../components/task_card';
 
-import { getTasks, createTasks, updateTasks, deleteTasks } from '../services/task_service'
+import { getTasks, createTask } from '../services/task_service'
 
 
 
@@ -9,6 +9,7 @@ import { getTasks, createTasks, updateTasks, deleteTasks } from '../services/tas
 function App() 
 {
   const [tasks, setTasks] = useState([]);
+  const [message, setMessage] = useState('');
   
   useEffect(() => 
   {
@@ -20,25 +21,33 @@ function App()
     fetchData();
 
   },[]);
-  
-  // await createTasks('HELLO WORLD')
-  
-  // await updateTasks({
-  //   id: "6222dc5b-da78-44f4-9b6c-cd406d11348e",
-  //   message: "222222222222222222222222222222222222222222222222222",
-  //   date: "Fri Jan 31 2025 19:19:21 GMT+0100 (Central European Standard Time)",
-  //   finished: 1 })
 
-  // await deleteTasks('6222dc5b-da78-44f4-9b6c-cd406d11348e')  
+  const deleteTask = (id) =>
+  {
+    const newTasks = tasks.filter(x => x.id !== id);
+    console.log(tasks.length);
+    console.log(newTasks.length);
 
+    setTasks([...newTasks]);    
+  }
+
+  const createNewTask = async () =>
+  {
+    await createTask(message)
+
+    setMessage('')
+  }
+  
   return (
-    <>
-    <p>HALLO</p>
+    <div id='main'>
+      <div className='task_card'>
+        <input type="text" className='message' onChange={(event)=> setMessage(event.target.value)} defaultValue={message}/>
+        <button className='button' onClick={() => createNewTask()}>Submit</button>
+      </div>
      {tasks && (
-      tasks.map((task) => {return <TaskCard task={task}/>})
-     )}
-     <p>HALLO</p>
-    </>
+       tasks.map((task) => {return <TaskCard task={task} deleteTask={deleteTask}/>})
+      )}
+  </div>
   )
 }
 
