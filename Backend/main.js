@@ -1,4 +1,5 @@
 import express from 'express'
+import {} from './data/db_context.js'
 
 const app = express();
 app.use(express.json())
