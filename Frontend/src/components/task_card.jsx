@@ -1,6 +1,8 @@
 export default function TaskCard(props)
 {
     const {id, message, finished, date} = props.task;
+    
+    
 
     return (
         <div key={id}>
