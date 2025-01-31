@@ -5,3 +5,8 @@ Backend: Express + SQLite
 
 Opens Frontend Site automatic with start or open http://localhost:xxxx
 
+Backend Task Type:
+id : string
+message : string
+date : Date
+finished : boolean /SQLite INTEGER
