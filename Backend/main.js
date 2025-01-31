@@ -15,8 +15,7 @@ app.listen(3000, () => {console.log('Server is running...');
 app.get('/todos', async (request, response) =>
 {
     const result = await getTasks();    
-    
-    
+
     response.status(200).send(result)
 });
 
@@ -33,10 +32,7 @@ app.post('/todos', async (request, response) =>
 // Change a Todo
 app.put('/todos', async (request, response) =>
 {
-    const { task } = request.body;
-
-    console.log(request.body);
-    
+    const { task } = request.body;    
     
     const result = await updateTask(task)
 

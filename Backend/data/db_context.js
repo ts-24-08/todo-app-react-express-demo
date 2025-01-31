@@ -28,7 +28,7 @@ export const getTasks = async () =>
 
     const result = await new Promise((resolve, reject) => 
     {
-        db.all('select * from task', (error, result) => 
+        db.all('select * from task order by date desc', (error, result) => 
         {
             if(error)
                 reject(error)
