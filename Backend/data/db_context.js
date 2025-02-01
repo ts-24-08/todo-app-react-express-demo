@@ -59,7 +59,7 @@ export const createTask = async (message) =>
     })
 
     db.close();
-    return result;
+    return {id,message, date, finished:false};
 }
 
 export const updateTask = async (task) =>

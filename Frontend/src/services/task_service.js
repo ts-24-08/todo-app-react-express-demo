@@ -11,8 +11,7 @@ export async function getTasks()
 //POST
 export async function createTask(message)
 {
-    // await fetch(url,message)
-    await axios.post(url, {message})
+    return await axios.post(url, {message}).then(x => {return x.data})
 }
 
 //PUT
